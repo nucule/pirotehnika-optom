@@ -87,6 +87,10 @@ class AdminEmployeesControllerCore extends AdminController
             'firstname' => array('title' => $this->l('First Name')),
             'lastname' => array('title' => $this->l('Last Name')),
             'email' => array('title' => $this->l('Email address')),
+			'seria' =>array('title' => $this->l('Серия')),
+			'nomer' =>array('title' => $this->l('Номер')),
+			'date_vidach' =>array('title' => $this->l('Дата выдачи')),
+			'kem_vidan' =>array('title' => $this->l('Кем выдан')),
             'profile' => array('title' => $this->l('Profile'), 'type' => 'select', 'list' => $this->profiles_array,
                 'filter_key' => 'pl!name', 'class' => 'fixed-width-lg'),
             'active' => array('title' => $this->l('Active'), 'align' => 'center', 'active' => 'status',
@@ -184,7 +188,8 @@ class AdminEmployeesControllerCore extends AdminController
                 'icon' => 'process-icon-new'
             );
         }
-
+//,$obj->seria,$obj->nomer,$obj->date_vidach,$obj->kem_vidan
+// %3$s %4$s %5$s %6$s
         if ($this->display == 'edit') {
             $obj = $this->loadObject(true);
             if (Validate::isLoadedObject($obj)) {
@@ -256,6 +261,42 @@ class AdminEmployeesControllerCore extends AdminController
                     'name' => 'email',
                     'required' => true,
                     'autocomplete' => false
+                ),
+				array(
+                    'type' => 'text',
+                    'class' => 'fixed-width-xxl',
+                   // 'prefix' => '<i class="icon-envelope-o"></i>',
+                    'label' => $this->l('Серия'),
+                    'name' => 'seria',
+                    'required' => false
+                    
+                ),
+				array(
+                    'type' => 'text',
+                    'class' => 'fixed-width-xxl',
+                   // 'prefix' => '<i class="icon-envelope-o"></i>',
+                    'label' => $this->l('Номер'),
+                    'name' => 'nomer',
+                    'required' => false
+                    
+                ),
+				array(
+                    'type' => 'date',
+                    'class' => 'datepicker fixed-width-xxl',
+                   // 'prefix' => '<i class="icon-envelope-o"></i>',
+                    'label' => $this->l('Дата выдачи'),
+                    'name' => 'date_vidach',
+                    'required' => false
+                    
+                ),
+				array(
+                    'type' => 'text',
+                    'class' => 'fixed-width-xxl',
+                   // 'prefix' => '<i class="icon-envelope-o"></i>',
+                    'label' => $this->l('Кем выдан'),
+                    'name' => 'kem_vidan',
+                    'required' => false
+                   
                 ),
             ),
         );
@@ -650,6 +691,10 @@ class AdminEmployeesControllerCore extends AdminController
                     '{lastname}' => $object->lastname,
                     '{firstname}' => $object->firstname,
                     '{passwd}' => $passwd
+					//'{seria}' => $object->seria,
+					//'{nomer}' => $object->nomer,
+					//'{date_vidach}' => $object->date_vidach,
+					//'{kem_vidan}' => $object->kem_vidan
                 );
                 Mail::Send($object->id_lang, 'password', Mail::l('Your new password', $object->id_lang), $params, $object->email, $object->firstname.' '.$object->lastname);
             }

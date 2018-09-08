@@ -42,7 +42,8 @@ class EmployeeCore extends ObjectModel
 
     /** @var string e-mail */
     public $email;
-
+	
+	
     /** @var string Password */
     public $passwd;
 
@@ -58,6 +59,11 @@ class EmployeeCore extends ObjectModel
 
     public $preselect_date_range;
 
+	/** @var string Passport */
+	public $seria;
+	public $nomer;
+	public $date_vidach;
+	public $kem_vidan;
     /** @var string Display back office background in the specified color */
     public $bo_color;
 
@@ -100,6 +106,12 @@ class EmployeeCore extends ObjectModel
         'fields' => array(
             'lastname' =>                    array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => true, 'size' => 32),
             'firstname' =>                    array('type' => self::TYPE_STRING, 'validate' => 'isName', 'required' => true, 'size' => 32),
+			
+			'seria' =>                    array('type' => self::TYPE_STRING, 'validate' => 'isString', 'required' => false, 'size' => 32),
+			'nomer' =>                    array('type' => self::TYPE_STRING, 'validate' => 'isString', 'required' => false, 'size' => 32),
+			'date_vidach' =>                    array('type' => self::TYPE_DATE,'validate' => 'isDate', 'required' => false),
+			'kem_vidan' =>                    array('type' => self::TYPE_STRING, 'validate' => 'isString', 'required' => false, 'size' => 128),
+			
             'email' =>                        array('type' => self::TYPE_STRING, 'validate' => 'isEmail', 'required' => true, 'size' => 128),
             'id_lang' =>                    array('type' => self::TYPE_INT, 'validate' => 'isUnsignedInt', 'required' => true),
             'passwd' =>                    array('type' => self::TYPE_STRING, 'validate' => 'isPasswdAdmin', 'required' => true, 'size' => 32),
@@ -250,12 +262,12 @@ class EmployeeCore extends ObjectModel
      * Return list of employees
      *
      * @param bool $active_only Filter employee by active status
-     * @return array|false Employees or false
+     * @return array|false Employees or false , `seria`, `nomer`, `date_vidach`, `kem_vidan`
      */
     public static function getEmployees($active_only = true)
     {
         return Db::getInstance()->executeS('
-			SELECT `id_employee`, `firstname`, `lastname`
+			SELECT `id_employee`, `firstname`, `lastname` 
 			FROM `'._DB_PREFIX_.'employee`
 			'.($active_only ? ' WHERE `active` = 1' : '').'
 			ORDER BY `lastname` ASC
