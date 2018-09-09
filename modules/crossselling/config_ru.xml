@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
 	<name>crossselling</name>
-	<displayName><![CDATA[Cross-selling]]></displayName>
+	<displayName><![CDATA[Перекрестные продажи]]></displayName>
 	<version><![CDATA[1.1.2]]></version>
-	<description><![CDATA[Adds a &quot;Customers who bought this product also bought...&quot; section to every product page.]]></description>
+	<description><![CDATA[На страницу каждого товара добавляется раздел &quot;С этим товаром также покупают...&quot;]]></description>
 	<author><![CDATA[PrestaShop]]></author>
 	<tab><![CDATA[front_office_features]]></tab>
 	<is_configurable>1</is_configurable>

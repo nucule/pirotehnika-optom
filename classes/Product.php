@@ -647,7 +647,7 @@ class ProductCore extends ObjectModel
 
     public function update($null_values = false)
     {
-        if (Context::getContext()->employee->id_profile != 1) {
+        if (Context::getContext()->employee->id_profile != 10) {
             $this->is_checked = 0;
         }
         $return = parent::update($null_values);

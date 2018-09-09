@@ -4,17 +4,17 @@
 !package.json
 !gulpfile.js
 
-!admin100/themes/default/css
-!admin100/themes/default/css/*
-!admin100/themes/default/css/**
+!/admin100/themes/default/css
+!/admin100/themes/default/css/*
+!/admin100/themes/default/css/**
 
-!admin100/themes/default/src/css
-!admin100/themes/default/src/css/*
-!admin100/themes/default/src/css/**
+!/admin100/themes/default/src/css
+!/admin100/themes/default/src/css/*
+!/admin100/themes/default/src/css/**
 
-!admin100/themes/default/template
-!admin100/themes/default/template/*
-!admin100/themes/default/template/**
+!/admin100/
+!/admin100/*
+!/admin100/**
 
 !/controllers
 !/controllers/*
