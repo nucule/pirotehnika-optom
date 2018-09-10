@@ -101,25 +101,6 @@
 	{include file="controllers/products/multishop/check_fields.tpl" product_tab="Informations"}
 
 	<div class="form-group">
-		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="active" type="radio" onclick=""}</span></div>
-		<label class="control-label col-lg-2">
-			{l s='Карточка проверена'}
-		</label>
-		<div class="col-lg-9">
-			<span class="switch prestashop-switch fixed-width-lg">
-				<input onclick="toggleDraftWarning(false);showOptions(true);showRedirectProductOptions(false);" type="radio" name="is_checked" id="is_checked_on" value="1" {if $product->is_checked || !$product->isAssociatedToShop()}checked="checked" {/if} />
-				<label for="is_checked_on" class="radioCheck">
-					{l s='Yes'}
-				</label>
-				<input onclick="toggleDraftWarning(true);showOptions(false);showRedirectProductOptions(true);"  type="radio" name="is_checked" id="is_checked_off" value="0" {if !$product->is_checked && $product->isAssociatedToShop()}checked="checked"{/if} />
-				<label for="is_checked_off" class="radioCheck">
-					{l s='No'}
-				</label>
-				<a class="slide-button btn"></a>
-			</span>
-		</div>
-	</div> 
-	<div class="form-group">
 		<label class="control-label col-lg-3" for="simple_product">
 			{$bullet_common_field} {l s='Type'}
 		</label>
