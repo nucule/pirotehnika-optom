@@ -120,19 +120,19 @@ $(document).ready(function () {
 		<div class="col-lg-9">
 			<p class="radio">
 				<label id="label_sale_unity_1" for="sale_unity_1">
-					<input onchange="javascript:calcEd(0); chng1();" type="radio" id="sale_unity_1" name="sale_unity" checked="checked" value="0" class="sale_unity" {if $product->sale_unity == 0} checked="checked"  {/if}>
+					<input onchange="javascript:calcEd(0); chng1(); chngprc()" type="radio" id="sale_unity_1" name="sale_unity" checked="checked" value="0" class="sale_unity" {if $product->sale_unity == 0} checked="checked"  {/if}>
 					штуках
 				</label>
 			</p>
 			<p class="radio">
 				<label id="label_sale_unity_2" for="sale_unity_2">
-					<input onchange="javascript:calcEd(1); chng1();" type="radio" id="sale_unity_2" name="sale_unity" value="1" class="sale_unity" {if $product->sale_unity == 1} checked="checked" {/if}>
+					<input onchange="javascript:calcEd(1); chng1(); chngprc()" type="radio" id="sale_unity_2" name="sale_unity" value="1" class="sale_unity" {if $product->sale_unity == 1} checked="checked" {/if}>
 					упаковках
 				</label>
 			</p>
 			<p class="radio">
 				<label id="label_sale_unity_3" for="sale_unity_3">
-					<input onchange="javascript:calcEd(2); chng1();" type="radio" id="sale_unity_3" name="sale_unity" value="2" class="sale_unity" {if $product->sale_unity == 2} checked="checked" {/if}>
+					<input onchange="javascript:calcEd(2); chng1(); chngprc()" type="radio" id="sale_unity_3" name="sale_unity" value="2" class="sale_unity" {if $product->sale_unity == 2} checked="checked" {/if}>
 					блоках
 				</label>
 			</p>
@@ -207,32 +207,38 @@ $(document).ready(function () {
 	<script>
 	function chng(){
 	if(document.getElementById('sale_unity_1').checked) {
+	calcEd(0);
   document.getElementById('shtvup').style.display='none';
   document.getElementById('r1').value='1';
   document.getElementById('upvbl').style.display='none';
   document.getElementById('r2').value='1';
 }else if(document.getElementById('sale_unity_2').checked) {
+calcEd(1);
 document.getElementById('shtvup').style.display='block';
   document.getElementById('upvbl').style.display='none';
  document.getElementById('r2').value='1';
 }
 else if(document.getElementById('sale_unity_3').checked) {
+calcEd(2);
 document.getElementById('shtvup').style.display='block';
   document.getElementById('upvbl').style.display='block';
  
 }}
 function chng1(){
 	if(document.getElementById('sale_unity_1').checked) {
+	calcEd(0);
   document.getElementById('shtvup').style.display='none';
  // document.getElementById('r1').value='1';
   document.getElementById('upvbl').style.display='none';
  // document.getElementById('r2').value='1';
 }else if(document.getElementById('sale_unity_2').checked) {
+calcEd(1);
 document.getElementById('shtvup').style.display='block';
   document.getElementById('upvbl').style.display='none';
 // document.getElementById('r2').value='1';
 }
 else if(document.getElementById('sale_unity_3').checked) {
+calcEd(2);
 document.getElementById('shtvup').style.display='block';
   document.getElementById('upvbl').style.display='block';
  
@@ -240,7 +246,24 @@ document.getElementById('shtvup').style.display='block';
 chng();
 </script>
 <script>
-
+function chngprc(){
+	if(document.getElementById('sale_unity_1').checked) {
+	calcEd(0);
+  document.getElementById('unit_price').value='0';
+  document.getElementById('unity').value=' ';
+ // document.getElementById('r1').value='1';
+ // document.getElementById('r2').value='1';
+}else if(document.getElementById('sale_unity_2').checked) {
+calcEd(1);
+document.getElementById('unit_price').value=document.getElementById('priceTE').value/document.getElementById('r1').value;
+  document.getElementById('unity').value='шт.';
+// document.getElementById('r2').value='1';
+}
+else if(document.getElementById('sale_unity_3').checked) {
+calcEd(2);
+ document.getElementById('unit_price').value=document.getElementById('priceTE').value/document.getElementById('r2').value;
+  document.getElementById('unity').value='уп.';
+}}
 
 </script>
 <!-- <!-- Иванов  -->	
@@ -416,8 +439,8 @@ chng();
 	</div>
 	<div class="panel-footer">
 		<a href="{$link->getAdminLink('AdminProducts')|escape:'html':'UTF-8'}{if isset($smarty.request.page) && $smarty.request.page > 1}&amp;submitFilterproduct={$smarty.request.page|intval}{/if}" class="btn btn-default"><i class="process-icon-cancel"></i> {l s='Cancel'}</a>
-		<button onclick='chng();' type="submit" name="submitAddproduct" class="btn btn-default pull-right" disabled="disabled"><i class="process-icon-loading"></i> {l s='Save'}</button>
-		<button onclick='chng();' type="submit" name="submitAddproductAndStay" class="btn btn-default pull-right" disabled="disabled"><i class="process-icon-loading"></i> {l s='Save and stay'}</button>
+		<button onclick='chng(); chngprc()' type="submit" name="submitAddproduct" class="btn btn-default pull-right" disabled="disabled"><i class="process-icon-loading"></i> {l s='Save'}</button>
+		<button onclick='chng(); chngprc()' type="submit" name="submitAddproductAndStay" class="btn btn-default pull-right" disabled="disabled"><i class="process-icon-loading"></i> {l s='Save and stay'}</button>
 	</div>
 </div>
 {if isset($specificPriceModificationForm)}
@@ -660,3 +683,22 @@ chng();
 						});
 				</script>
 			{/if}
+<script>
+	if(document.getElementById('sale_unity_1').checked) {
+	calcEd(0);
+  document.getElementById('shtvup').style.display='none';
+  document.getElementById('r1').value='1';
+  document.getElementById('upvbl').style.display='none';
+  document.getElementById('r2').value='1';
+}else if(document.getElementById('sale_unity_2').checked) {
+calcEd(1);
+document.getElementById('shtvup').style.display='block';
+  document.getElementById('upvbl').style.display='none';
+ document.getElementById('r2').value='1';
+}
+else if(document.getElementById('sale_unity_3').checked) {
+calcEd(2);
+document.getElementById('shtvup').style.display='block';
+  document.getElementById('upvbl').style.display='block';
+ 
+}</script>
