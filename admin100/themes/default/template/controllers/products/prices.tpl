@@ -137,8 +137,7 @@ $(document).ready(function () {
 				</label>
 			</p>
 		</div>
-	</div>
-		
+	</div>	
 	
 <!-- Единиц измерения в коробке -->
 	<div id='edizm' class="form-group">
